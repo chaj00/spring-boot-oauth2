@@ -9,7 +9,7 @@
 <body>
 	<h1>사용자 등록</h1>
 	<div>
-		<form name=userform action="/api/create" method="post" > 
+		<form name=userform action="/create" method="post" > 
 			<label for="username">아이디</label>
 			<input type="text" id="username" name="username">
 			

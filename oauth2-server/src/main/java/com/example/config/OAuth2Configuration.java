@@ -1,8 +1,7 @@
-package com.rd.config;
+package com.example.config;
 
-import com.rd.security.Authorities;
-import com.rd.security.CustomAuthenticationEntryPoint;
-import com.rd.security.CustomLogoutSuccessHandler;
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
@@ -12,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -23,7 +21,9 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import javax.sql.DataSource;
+import com.example.security.Authorities;
+import com.example.security.CustomAuthenticationEntryPoint;
+import com.example.security.CustomLogoutSuccessHandler;
 
 @Configuration
 public class OAuth2Configuration {
@@ -55,8 +55,7 @@ public class OAuth2Configuration {
                     	.disable() 
                     	.headers() 
                     	.frameOptions().disable() 
-                    	.sessionManagement() 
-                    	.sessionCreationPolicy(SessionCreationPolicy.STATELESS) 	
+	
         			.and()
                     .authorizeRequests() 
                     	.antMatchers("/hello/").permitAll()
